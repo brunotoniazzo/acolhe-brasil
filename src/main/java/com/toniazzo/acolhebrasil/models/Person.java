@@ -39,10 +39,14 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    private Integer age = calculateAge(dateOfBirth, LocalDate.now());
+    private final Integer age = calculateAge(dateOfBirth, LocalDate.now());
 
     public static int calculateAge(LocalDate dateOfBirth, LocalDate currentDate) {
         Period period = Period.between(dateOfBirth, currentDate);
         return period.getYears();
     }
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 }
