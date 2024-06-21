@@ -1,5 +1,6 @@
 package com.toniazzo.acolhebrasil.models;
 
+import com.toniazzo.acolhebrasil.models.enums.FamilyHelper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,12 +33,27 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 11)
     private String cpf;
+
+    @Column(unique = true, length = 9)
+    private String rg;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(nullable = false)
     private LocalDate dateOfBirth;
+
+    private String email;
+
+    private String phoneNumber;
+
+    private String observation;
+
+    @ManyToOne
+    @JoinColumn(name = "family_id")
+    private Family family;
+
+    private FamilyHelper familyHelper;
 
     private final Integer age = calculateAge(dateOfBirth, LocalDate.now());
 

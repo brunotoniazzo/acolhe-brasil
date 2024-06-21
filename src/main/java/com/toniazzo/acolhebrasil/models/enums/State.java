@@ -84,11 +84,11 @@ public enum State {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("State{");
-        sb.append("stateName='").append(stateName).append('\'');
-        sb.append(", acronym='").append(acronym).append('\'');
-        sb.append(", capital='").append(capital).append('\'');
-        sb.append('}');
-        return sb.toString();
+        final StringBuilder stringBuilder = new StringBuilder("State{");
+        stringBuilder.append("stateName='").append(stateName).append('\'');
+        stringBuilder.append(", acronym='").append(acronym).append('\'');
+        stringBuilder.append(", capital='").append(capital).append('\'');
+        stringBuilder.append('}');
+        return stringBuilder.toString();
     }
 }
