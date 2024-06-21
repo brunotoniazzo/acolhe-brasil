@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -34,11 +35,13 @@ public class Family implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
-    private Person person;
-
+    private List<Person> person;
 
     @ManyToOne
     @JoinColumn(name = "family_address_id", nullable = false)
     private Address familyAddress;
+
+    @JoinColumn(name = "last_donation_id")
+    private Donation lastDonation;
 
 }

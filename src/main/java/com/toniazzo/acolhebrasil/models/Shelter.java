@@ -6,22 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.Clock;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Donation")
+@Table(name = "Shelter")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
-public class Donation implements Serializable {
+public class Shelter implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -31,11 +28,9 @@ public class Donation implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    private List<Product> product;
+    private String name;
 
-    @Column(nullable = false)
-    private Integer quantity;
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-    private final LocalDateTime donationDateTime = LocalDateTime.now(Clock.systemUTC().getZone());
+    @OneToOne
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
 }

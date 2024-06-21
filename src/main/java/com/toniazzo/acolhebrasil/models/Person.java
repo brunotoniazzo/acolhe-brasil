@@ -13,7 +13,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -71,4 +70,8 @@ public class Person implements Serializable {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "shelter_id")
+    private Shelter shelter;
 }
