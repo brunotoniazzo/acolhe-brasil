@@ -31,7 +31,7 @@ public class Donation implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    private List<Product> product;
+    private Product product;
 
     @Column(nullable = false)
     private Integer quantity;

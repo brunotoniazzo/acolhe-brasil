@@ -27,7 +27,7 @@ public class Shelter implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = false)
     private String name;
 
     @OneToOne
