@@ -1,6 +1,7 @@
 package com.toniazzo.acolhebrasil.models;
 
 import com.toniazzo.acolhebrasil.models.enums.FamilyHelper;
+import com.toniazzo.acolhebrasil.models.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +34,11 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String name;
 
+    private String socialName;
+
+    @Column(nullable = false)
+    private Gender gender;
+
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
 
@@ -50,7 +56,7 @@ public class Person implements Serializable {
     private String observation;
 
     @ManyToOne
-    @JoinColumn(name = "family_id")
+    @JoinColumn(name = "family_id", nullable = false)
     private Family family;
 
     private FamilyHelper familyHelper;
