@@ -1,5 +1,6 @@
 package com.toniazzo.acolhebrasil.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toniazzo.acolhebrasil.models.enums.FamilyHelper;
 import com.toniazzo.acolhebrasil.models.enums.Gender;
 import jakarta.persistence.*;
@@ -12,7 +13,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.Period;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -35,6 +37,7 @@ public class Person implements Serializable {
 
     private String socialName;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender;
 
@@ -54,24 +57,25 @@ public class Person implements Serializable {
 
     private String observation;
 
-    @ManyToOne
-    @JoinColumn(name = "family_id", nullable = false)
-    private Family family;
-
+    @Enumerated(EnumType.STRING)
     private FamilyHelper familyHelper;
+//
+//    private final Integer age = calculateAge(dateOfBirth, LocalDate.now());
+//
+//    public static int calculateAge(LocalDate dateOfBirth, LocalDate currentDate) {
+//        Period period = Period.between(dateOfBirth, currentDate);
+//        return period.getYears();
+//    }
 
-    private final Integer age = calculateAge(dateOfBirth, LocalDate.now());
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Address> address = new HashSet<>();
 
-    public static int calculateAge(LocalDate dateOfBirth, LocalDate currentDate) {
-        Period period = Period.between(dateOfBirth, currentDate);
-        return period.getYears();
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shelter_id")
     private Shelter shelter;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "family_id")
+    private Family family;
 }

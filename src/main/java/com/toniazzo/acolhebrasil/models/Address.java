@@ -1,5 +1,6 @@
 package com.toniazzo.acolhebrasil.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toniazzo.acolhebrasil.models.enums.State;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -46,5 +49,13 @@ public class Address implements Serializable {
     private String complement;
 
     private String extraDescription;
+
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    private Set<Person> person = new HashSet<>();
+
+    @OneToOne(mappedBy = "address")
+    @JoinColumn(name = "family_id", nullable = false)
+    private Family family;
 
 }

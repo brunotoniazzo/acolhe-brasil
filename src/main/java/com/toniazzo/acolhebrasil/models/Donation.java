@@ -1,6 +1,7 @@
 package com.toniazzo.acolhebrasil.models;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,8 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -30,12 +32,17 @@ public class Donation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
-    private Product product;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "donations", fetch = FetchType.LAZY)
+    private Set<Product> products = new HashSet<>();
 
     @Column(nullable = false)
     private Integer quantity;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private final LocalDateTime donationDateTime = LocalDateTime.now(Clock.systemUTC().getZone());
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "family_id")
+    private Family family;
 }

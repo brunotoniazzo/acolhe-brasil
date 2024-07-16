@@ -1,6 +1,7 @@
 package com.toniazzo.acolhebrasil.models;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +10,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "Family")
@@ -34,15 +33,16 @@ public class Family implements Serializable {
     @Column(precision = 2)
     private Integer members;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id", nullable = false)
-    private Person person;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "family", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Person> persons = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "family_address_id", nullable = false)
-    private Address familyAddress;
+    @OneToOne(mappedBy = "family")
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
 
-    @JoinColumn(name = "last_donation_id")
-    private Donation lastDonation;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "family", fetch = FetchType.LAZY)
+    private Set<Donation> donation = new HashSet<>();
 
 }
