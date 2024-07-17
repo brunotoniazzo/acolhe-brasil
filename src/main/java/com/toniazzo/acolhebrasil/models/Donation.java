@@ -32,9 +32,9 @@ public class Donation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @OneToMany(mappedBy = "donations", fetch = FetchType.LAZY)
-    private Set<Product> products = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "product")
+    private Product products;
 
     @Column(nullable = false)
     private Integer quantity;
@@ -42,7 +42,7 @@ public class Donation implements Serializable {
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private final LocalDateTime donationDateTime = LocalDateTime.now(Clock.systemUTC().getZone());
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "family_id")
     private Family family;
 }

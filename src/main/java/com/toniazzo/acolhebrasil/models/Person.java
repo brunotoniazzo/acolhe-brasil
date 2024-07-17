@@ -67,15 +67,15 @@ public class Person implements Serializable {
 //        return period.getYears();
 //    }
 
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Address> address = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "shelter_id")
     private Shelter shelter;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "family_id")
     private Family family;
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "address")
+@Table(name = "Address")
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -54,8 +54,11 @@ public class Address implements Serializable {
     @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
     private Set<Person> person = new HashSet<>();
 
-    @OneToOne(mappedBy = "address")
-    @JoinColumn(name = "family_id", nullable = false)
-    private Family family;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    private Set<Family> family = new HashSet<>();
 
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    private Set<Shelter> shelter = new HashSet<>();
 }

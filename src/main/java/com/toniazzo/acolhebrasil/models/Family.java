@@ -10,7 +10,9 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Family")
@@ -33,16 +35,15 @@ public class Family implements Serializable {
     @Column(precision = 2)
     private Integer members;
 
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @OneToMany(mappedBy = "family", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Person> persons = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 
-    @OneToOne(mappedBy = "family")
-    @JoinColumn(name = "address_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "donation_id")
+    private Donation donation;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address address;
-
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @OneToMany(mappedBy = "family", fetch = FetchType.LAZY)
-    private Set<Donation> donation = new HashSet<>();
-
 }
