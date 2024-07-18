@@ -67,11 +67,16 @@ public class Person implements Serializable {
 //        return period.getYears();
 //    }
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @ManyToMany
+    @JoinTable(
+            name = "table_person_address",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "address_id")
+    )
+    private Set<Address> address = new HashSet<>();
 
-    @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToOne
     @JoinColumn(name = "shelter_id")
     private Shelter shelter;
 

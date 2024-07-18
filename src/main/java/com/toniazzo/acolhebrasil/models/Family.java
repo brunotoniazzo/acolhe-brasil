@@ -35,9 +35,9 @@ public class Family implements Serializable {
     @Column(precision = 2)
     private Integer members;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToMany(mappedBy = "family", fetch = FetchType.LAZY)
+    private Set<Person> person = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "donation_id")

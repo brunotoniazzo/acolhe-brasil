@@ -33,7 +33,11 @@ public class Product implements Serializable {
 
     private String description;
 
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @OneToMany(mappedBy = "products", fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name = "table_donation_products",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "donation_id")
+    )
     private Set<Donation> donations = new HashSet<>();
 }

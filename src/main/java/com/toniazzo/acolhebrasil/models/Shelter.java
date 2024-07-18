@@ -32,9 +32,8 @@ public class Shelter implements Serializable {
     @Column(nullable = false, unique = false)
     private String name;
 
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @OneToMany(mappedBy = "shelter", fetch = FetchType.LAZY)
-    private Set<Person> person = new HashSet<>();
+    @OneToOne(mappedBy = "shelter", cascade = CascadeType.ALL)
+    private Person person;
 
     @ManyToOne
     @JoinColumn(name = "address_id")

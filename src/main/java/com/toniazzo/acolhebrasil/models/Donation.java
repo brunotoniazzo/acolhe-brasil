@@ -32,9 +32,9 @@ public class Donation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "product")
-    private Product products;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(mappedBy = "donations", fetch = FetchType.LAZY)
+    private Set<Product> products = new HashSet<>();
 
     @Column(nullable = false)
     private Integer quantity;

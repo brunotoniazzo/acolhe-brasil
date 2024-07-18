@@ -50,8 +50,8 @@ public class Address implements Serializable {
 
     private String extraDescription;
 
-    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
-    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(mappedBy = "address", fetch = FetchType.LAZY)
     private Set<Person> person = new HashSet<>();
 
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
