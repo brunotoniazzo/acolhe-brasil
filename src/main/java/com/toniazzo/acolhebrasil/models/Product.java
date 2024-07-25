@@ -1,11 +1,6 @@
 package com.toniazzo.acolhebrasil.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,10 +10,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Product")
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
 public class Product implements Serializable {
 
     @Serial
@@ -40,4 +31,36 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "donation_id")
     )
     private Set<Donation> donations = new HashSet<>();
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(Set<Donation> donations) {
+        this.donations = donations;
+    }
 }
