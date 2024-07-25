@@ -3,6 +3,10 @@ package com.toniazzo.acolhebrasil.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toniazzo.acolhebrasil.models.enums.State;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,6 +16,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Address")
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class Address implements Serializable {
 
     @Serial
@@ -53,100 +61,4 @@ public class Address implements Serializable {
     @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
     private Set<Shelter> shelter = new HashSet<>();
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getNeighbourhood() {
-        return neighbourhood;
-    }
-
-    public void setNeighbourhood(String neighbourhood) {
-        this.neighbourhood = neighbourhood;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public Integer getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(Integer houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getComplement() {
-        return complement;
-    }
-
-    public void setComplement(String complement) {
-        this.complement = complement;
-    }
-
-    public String getExtraDescription() {
-        return extraDescription;
-    }
-
-    public void setExtraDescription(String extraDescription) {
-        this.extraDescription = extraDescription;
-    }
-
-    public Set<Person> getPerson() {
-        return person;
-    }
-
-    public void setPerson(Set<Person> person) {
-        this.person = person;
-    }
-
-    public Set<Family> getFamily() {
-        return family;
-    }
-
-    public void setFamily(Set<Family> family) {
-        this.family = family;
-    }
-
-    public Set<Shelter> getShelter() {
-        return shelter;
-    }
-
-    public void setShelter(Set<Shelter> shelter) {
-        this.shelter = shelter;
-    }
 }

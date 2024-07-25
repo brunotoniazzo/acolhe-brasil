@@ -3,6 +3,10 @@ package com.toniazzo.acolhebrasil.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,6 +16,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Family")
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class Family implements Serializable {
 
     @Serial
@@ -38,52 +46,4 @@ public class Family implements Serializable {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getFamilyName() {
-        return familyName;
-    }
-
-    public void setFamilyName(String familyName) {
-        this.familyName = familyName;
-    }
-
-    public Integer getMembers() {
-        return members;
-    }
-
-    public void setMembers(Integer members) {
-        this.members = members;
-    }
-
-    public Set<Person> getPerson() {
-        return person;
-    }
-
-    public void setPerson(Set<Person> person) {
-        this.person = person;
-    }
-
-    public Donation getDonation() {
-        return donation;
-    }
-
-    public void setDonation(Donation donation) {
-        this.donation = donation;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }

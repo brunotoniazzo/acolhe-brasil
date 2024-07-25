@@ -1,9 +1,12 @@
 package com.toniazzo.acolhebrasil.services;
 
+import com.toniazzo.acolhebrasil.dtos.PersonRecordDTO;
+import com.toniazzo.acolhebrasil.models.Person;
 import com.toniazzo.acolhebrasil.repositories.AddressRepository;
 import com.toniazzo.acolhebrasil.repositories.FamilyRepository;
 import com.toniazzo.acolhebrasil.repositories.PersonRepository;
 import com.toniazzo.acolhebrasil.repositories.ShelterRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
