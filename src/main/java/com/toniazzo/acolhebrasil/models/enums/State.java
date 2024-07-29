@@ -50,7 +50,7 @@ public enum State {
         throw new IllegalArgumentException(stateNameUf);
     }
     
-    public static State fromSigla(final String acronym) {
+    public static State fromAcronym(final String acronym) {
         for (final State state : State.values()) {
             if (state.acronym.equalsIgnoreCase(acronym)) {
                 return state;

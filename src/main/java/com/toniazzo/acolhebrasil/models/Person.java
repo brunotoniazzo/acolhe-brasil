@@ -1,11 +1,14 @@
 package com.toniazzo.acolhebrasil.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toniazzo.acolhebrasil.models.enums.FamilyHelper;
 import com.toniazzo.acolhebrasil.models.enums.Gender;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
