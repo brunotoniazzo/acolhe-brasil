@@ -6,7 +6,6 @@ import com.toniazzo.acolhebrasil.models.enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,7 +19,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 public class Person implements Serializable {
 
     @Serial
@@ -72,8 +70,7 @@ public class Person implements Serializable {
     )
     private Set<Address> address = new HashSet<>();
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "shelter_id")
     private Shelter shelter;
 

@@ -1,6 +1,5 @@
 package com.toniazzo.acolhebrasil.models;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Clock;
