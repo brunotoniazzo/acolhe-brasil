@@ -11,6 +11,7 @@ import com.toniazzo.acolhebrasil.repositories.ShelterRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,4 +50,15 @@ public class PersonService {
         return personRepository.save(person);
     }
 
+    public List<Person> findAll() {
+        return personRepository.findAll();
+    }
+
+    public Person findPersonById(PersonRecordDTO id) {
+        return personRepository.findById(id);
+    }
+
+    public Person deletePerson(PersonRecordDTO id) {
+        return personRepository.deleteById(id);
+    }
 }

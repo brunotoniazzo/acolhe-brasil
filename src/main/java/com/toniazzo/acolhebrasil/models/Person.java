@@ -1,5 +1,6 @@
 package com.toniazzo.acolhebrasil.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.toniazzo.acolhebrasil.models.enums.FamilyHelper;
 import com.toniazzo.acolhebrasil.models.enums.Gender;
 import jakarta.persistence.*;
@@ -45,7 +46,8 @@ public class Person implements Serializable {
     @Column(unique = true, length = 9)
     private String rg;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    //AJUSTAR FORMATO DA DATA DE NASCIMENTO PARA PASSAR NA API
+//    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
